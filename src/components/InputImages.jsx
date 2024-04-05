@@ -2,14 +2,29 @@ import React from 'react'
 
 export default function InputImages({ inputsState, setInputsState}){
 
-    // console.log(inputsState)
+    console.log(inputsState)
+
+
+    // input.addEventListener('change',(e)=>{
+    //     const image = new Image()
+    //     let URL = window.URL;
+    //     let url = URL.createObjectURL(e.target.files[0]);
+    //     image.src = url;
+    
+    //     image.addEventListener('load', ()=>{
+    //         ctx.drawImage(image, 0, 0, 100,100)
+    //         // ctx.drawImage(image, 0, 0)
+    //     })
+    // })
 
     function handleInput(e){
         e.preventDefault()
 
-        console.log(e.target.value)
+        // console.log(typeof e.target.files[0])
 
         //image.src = url;
+
+
         if(e.target.value){
             setInputsState(prev=> ({...prev, [e.target.id]: e.target.value}))
         }else if(e.target.files[0]){
