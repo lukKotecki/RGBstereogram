@@ -2,9 +2,9 @@ import react from 'react'
 
 export default function Header(){
 
-    let red = {color:'red'}
-    let green = {color:'green'}
-    let blue = {color:'blue', textShadow:'0 0 12 #010'}
+    let red = {color:'red', textShadow:'0 0 3px green'}
+    let green = {color:'green', textShadow:'0 0 3px blue'}
+    let blue = {color:'blue', textShadow:'0 0 3px red'}
 
     return (
         <header>
