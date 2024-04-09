@@ -4,6 +4,22 @@ export default function InputImages({ inputsState, setInputsState}){
 
     console.log(inputsState)
 
+    const canvasRef = React.useRef(null)
+    
+    // React.useEffect(()=>{
+    //     const canvas = canvasRef.current
+    //     const context = canvas.getContext('2d')
+    //     // context.fillStyle = '#123123'
+        
+    //     const image = new Image()
+    //     let URL = window.URL
+    //     if(inputsState.secondImageUrl){
+    //         image.src = URL.createObjectURL(inputsState.secondImageUrl)
+    //         context.drawImage(image, 0, 0, canvas.width, canvas.height)
+    //     }
+
+    // },[inputsState])
+
 
     // input.addEventListener('change',(e)=>{
     //     const image = new Image()
@@ -21,20 +37,26 @@ export default function InputImages({ inputsState, setInputsState}){
         e.preventDefault()
 
         // console.log(typeof e.target.files[0])
-
         //image.src = url;
 
+        // let url = URL.createObjectURL(e.target.files[0]);
+        // console.log(url)
 
-        if(e.target.value){
-            setInputsState(prev=> ({...prev, [e.target.id]: e.target.value}))
-        }else if(e.target.files[0]){
-            let URL = window.URL;
-            let url = URL.createObjectURL(e.target.files[0]);
-            setInputsState(prev=>({
-                ...prev, [e.target.id]: url
-            }))
-            
-        }
+        // if(e.target.value){
+        //     setInputsState(prev=> ({...prev, [e.target.id]: e.target.value}))
+        // }else if(e.target.files[0]){
+        //     // let URL = window.URL;
+        //     let url = URL.createObjectURL(e.target.files[0]);
+        //     setInputsState(prev=>({
+        //         ...prev, [e.target.id]: url
+        //     }))
+        // }
+        const URL = window.URL
+        const url = URL.createObjectURL(e.target.files[0])
+        setInputsState(prev=>({
+            ...prev,
+            [e.target.id]: url
+        }))
 
     }
 
@@ -49,6 +71,7 @@ export default function InputImages({ inputsState, setInputsState}){
                         Upload file
                     </label>
                     <input id="firstImageUrl" type="file" />
+                    <canvas ref={canvasRef} id='canvas' >fota</canvas>
                     <div className='number-inputs-wrapper'>
                         <label htmlFor='firstRed'>Red: </label>
                         <input onChange={handleInput} id='firstRed' name='firstRed' type='number' min='0' max='100' value={inputsState.firstRed}></input>
