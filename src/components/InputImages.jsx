@@ -13,54 +13,47 @@ export default function InputImages({ inputsState, setInputsState}){
                             {...el, [e.target.id.slice(1)]: e.target.value}: el ))
         }
         if(e.target.type === 'file'){
-            setInputsState(prev => prev.map((el, index)=>{
-                const url = window.URL.createObjectURL(e.target.files[0])
-                console.log(url)
-                return el.imageId == e.target.id ? 
-                    {...el, imageUrl: url } : el
-            }))
+            handleImageUpload(e)
         }
-
-
-        // // dzialające bez mapowania inutów
-        // if(e.target.type === 'number'){
-        //     setInputsState(prev=> ({...prev, [e.target.id]: e.target.value }))
-        // }else if(e.target.type === 'file'){
-        //     const url = window.URL.createObjectURL(e.target.files[0])
-        //     setInputsState(prev=>({ ...prev, [e.target.id]: url}))
-        //     handleImageUpload(e)
-        // }
         
     }
     
     function handleImageUpload(e){
         console.log(e.target.files.length)
-        switch(e.target.id){
-            case 'firstImageUrl':
-                console.log('kliknięto w pierwszym, ilość: '+e.target.files.length)
+        switch(e.target.files.length){
+            case 1:
+                setInputsState(prev => prev.map((el, index)=>{
+                    const url = window.URL.createObjectURL(e.target.files[0])
+                    return el.imageId == e.target.id ? 
+                    {...el, imageUrl: url } : el
+                }))
+                return;
+            case 2:
+                console.log('kliknięto w dwa, ilość: '+e.target.files.length)
+                return;
+            default:
+                setInputsState(prev => prev.map((el, index)=>{
+                    return {...el, imageUrl: window.URL.createObjectURL(e.target.files[index]) }
+                }))
+                return
         }
+
+
+
+
+
+        // // to dzialalo stare
+        // setInputsState(prev => prev.map((el, index)=>{
+        //     const url = window.URL.createObjectURL(e.target.files[0])
+        //     console.log(url)
+        //     return el.imageId == e.target.id ? 
+        //         {...el, imageUrl: url } : el
+        // }))
 
     }
 
     return (
         <form id='form-container'>
-            {/* <div className='input-wrapper'>
-                <img src={inputsState.firstImageUrl}/>
-                <br/>
-                <label htmlFor="firstImageUrl" className="custom-file-upload">
-                    Upload file
-                </label>
-                <input onChange={handleInput} id="firstImageUrl" type="file" multiple />
-                <div className='number-inputs-wrapper'>
-                    <label htmlFor='firstRed'>Red: </label>
-                    <input onChange={handleInput} id='firstRed' name='firstRed' type='number' min='0' max='100' value={inputsState.firstRed}></input>
-                    <label htmlFor='firstGreen'>Green: </label>
-                    <input onChange={handleInput} id='firstGreen' name='firstGreen' type='number' min='0' max='100' value={inputsState.firstGreen}></input>
-                    <label htmlFor='firstBlue'>Blue: </label>
-                    <input onChange={handleInput} id='firstBlue' name='firstBlue' type='number' min='0' max='100' value={inputsState.firstBlue}></input>
-                </div>
-            </div> */}
-
 
             {inputsState.map((el, index)=>
                 <div key={el.imageId} className='input-wrapper'>
