@@ -46,24 +46,28 @@ const obj = {
 }
 const arr = [
   {
-    firstImageUrl: '',
-    firstRed: 90,
-    firstGreen: 10,
-    firstBlue: 10 }, 
+    imageId: 'firstImage',
+    imageUrl: '',
+    red: 90,
+    green: 1,
+    blue: 2 
+  }, 
   {
-    secondImageUrl: '',
-    seconRed: 10,
-    secondGreen: 90,
-    secondBlue: 10 }, 
-    {
-    thirdImageUrl: '',
-    thirdRed: 10,
-    thirdGreen: 10,
-    thirdBlue: 90,
-    
-  }
+    imageId: 'secondImage',
+    imageUrl: '',
+    red: 3,
+    green: 77,
+    blue: 4 
+  }, 
+  {
+    imageId: 'thirdImage',
+    imageUrl: '',
+    red: 5,
+    green: 10,
+    blue: 6 
+  }, 
 ]
-const [inputsState, setInputsState] = React.useState(initialObj)
+const [inputsState, setInputsState] = React.useState(arr)
 
 return (
     <div className='container'>
