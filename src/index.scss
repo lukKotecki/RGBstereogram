@@ -11,6 +11,7 @@ body{
 .container{
   min-height: 100vh;
   position :relative;
+  text-align: center;
 }
 
 header{
@@ -51,10 +52,8 @@ footer{
   margin-top: 3%;
 }
 
-
-canvas{
-  border: red 1px solid;
-  width:100%;
+.input-wrapper{
+  margin-top: 3em;
 }
 
 .input-wrapper img{
@@ -64,6 +63,7 @@ canvas{
 input[type="file"] {
   display: none;
 }
+
 .custom-file-upload {
   border: 1px solid #ccc;
   display: inline-block;
@@ -78,14 +78,19 @@ input[type="file"] {
 }
 
 .number-inputs-wrapper input{
+  width:4em;
   font-size: 1rem;
-  padding: .5em 1em;
+  font-weight: bold;
+  padding: .1em .3em;
   display: inline-block;
-  margin: .5em;
+  margin: .3em;
   border-radius: 5px;
   border: none;
   text-align: center;
 }
+// .input-dimensions{
+//   width: 4em;
+// }
 
 #submit{
   margin-top: 3em;
@@ -108,3 +113,11 @@ input[type="file"] {
     
   }
 }
+  
+
+
+  
+  canvas{
+    border: red 1px solid;
+    width:100%;
+  }

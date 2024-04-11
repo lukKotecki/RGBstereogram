@@ -1,13 +1,13 @@
 import React from 'react'
 
-export default function InputImages({ inputsState, setInputsState}){
+export default function InputImages({ inputsState, setInputsState, createOutput}){
 
+    console.clear()
     console.log(inputsState)
 
     function handleInput(e){
         e.preventDefault()
         console.log("To jest otrzymane: "+e.target.id)
-        
         if(e.target.type === 'number'){
             setInputsState(prev => prev.map((el, index)=> index == e.target.id.slice(0,1) ? 
                             {...el, [e.target.id.slice(1)]: e.target.value}: el ))
@@ -15,7 +15,6 @@ export default function InputImages({ inputsState, setInputsState}){
         if(e.target.type === 'file'){
             handleImageUpload(e)
         }
-        
     }
     
     function handleImageUpload(e){
@@ -29,7 +28,12 @@ export default function InputImages({ inputsState, setInputsState}){
                 }))
                 return;
             case 2:
-                console.log('kliknięto w dwa, ilość: '+e.target.files.length)
+                /// TODO handle 2 images input
+                setInputsState(prev => prev.map((el, index)=>{
+                    const url = window.URL.createObjectURL(e.target.files[0])
+                    return el.imageId == e.target.id ? 
+                    {...el, imageUrl: url } : el
+                }))
                 return;
             default:
                 setInputsState(prev => prev.map((el, index)=>{
@@ -52,8 +56,14 @@ export default function InputImages({ inputsState, setInputsState}){
 
     }
 
+    function handleSubmit(e){
+        e.preventDefault()
+        console.log('kliknięto submit')
+        //createOutput()
+    }
+
     return (
-        <form id='form-container'>
+        <form id='form-container'  onSubmit={handleSubmit} >
 
             {inputsState.map((el, index)=>
                 <div key={el.imageId} className='input-wrapper'>
@@ -64,7 +74,7 @@ export default function InputImages({ inputsState, setInputsState}){
                     </label>
                     <input onChange={handleInput} id={el.imageId} type="file" multiple />
                     <div className='number-inputs-wrapper'>
-                        <label htmlFor={el.imageId+'Red'}>Red: </label>
+                        <label htmlFor={el.imageId+'Red'}>Red:</label>
                         <input  onChange={handleInput} 
                                 id={index+'red'} 
                                 name={el.imageId+'Red'} 
@@ -73,7 +83,7 @@ export default function InputImages({ inputsState, setInputsState}){
                                 value={el.red}
                                 data={{red: 'red'}}>
                         </input>
-                        <label htmlFor={el.imageId+'Green'}>Green: </label>
+                        <label htmlFor={el.imageId+'Green'}>Green:</label>
                         <input  onChange={handleInput} 
                                 id={index+'green'} 
                                 name={el.imageId+'Green'} 
@@ -81,7 +91,7 @@ export default function InputImages({ inputsState, setInputsState}){
                                 min='0' max='100' 
                                 value={el.green}>
                         </input>
-                        <label htmlFor={el.imageId+'Blue'}>Blue: </label>
+                        <label htmlFor={el.imageId+'Blue'}>Blue:</label>
                         <input  onChange={handleInput} 
                                 id={index+'blue'} 
                                 name={el.imageId+'Blue'} 
@@ -98,9 +108,9 @@ export default function InputImages({ inputsState, setInputsState}){
                 <div className="number-inputs-wrapper">
 
                     <label htmlFor='input-width'>width: </label>
-                    <input id='input-width' type='number' min='1' max='10000'></input>
+                    <input className='input-dimensions' id='input-width' type='number' min='1' max='10000'></input>
                     <label htmlFor='height-width'>height: </label>
-                    <input id='height-width' type='number' min='1' max='10000'></input>
+                    <input className='input-dimensions' id='height-width' type='number' min='1' max='10000'></input>
                     
                     
                 </div>
@@ -108,5 +118,6 @@ export default function InputImages({ inputsState, setInputsState}){
             </div>
 
         </form>
+
     )
 }

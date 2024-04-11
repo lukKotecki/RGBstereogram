@@ -2,6 +2,7 @@ import React from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import InputImages from './components/InputImages'
+import OutputImage from './components/OutputImage'
 
 function App() {
 
@@ -44,7 +45,7 @@ const obj = {
     
   }
 }
-const arr = [
+const imagesArray = [
   {
     imageId: 'firstImage',
     imageUrl: '',
@@ -67,14 +68,22 @@ const arr = [
     blue: 6 
   }, 
 ]
-const [inputsState, setInputsState] = React.useState(arr)
+const [inputsState, setInputsState] = React.useState(imagesArray)
+
+function createOutput(callbackFunc){
+  console.log('odpalam funkcje w rodzicu')
+  callbackFunc()
+}
+
 
 return (
     <div className='container'>
       <Header />
-      <InputImages inputsState={inputsState} setInputsState={setInputsState}/>
+      <InputImages  inputsState={inputsState} 
+                    setInputsState={setInputsState} 
+                    createOutput={createOutput}/>
       
-
+      <OutputImage inputsState={inputsState} createOutput={createOutput} />
       <Footer />
     </div>
   )
