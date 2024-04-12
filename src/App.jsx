@@ -6,6 +6,9 @@ import OutputImage from './components/OutputImage'
 
 function App() {
 
+const outputRef = React.useRef(null)
+
+const [canvas, setCanvas] = React.useState(<div></div>)
 
   
   const initialObj = {
@@ -70,9 +73,15 @@ const imagesArray = [
 ]
 const [inputsState, setInputsState] = React.useState(imagesArray)
 
-function createOutput(callbackFunc){
+function createOutput(){
   console.log('odpalam funkcje w rodzicu')
-  callbackFunc()
+
+
+
+
+  setCanvas(<div>a co tam</div>)
+
+  
 }
 
 
@@ -83,7 +92,8 @@ return (
                     setInputsState={setInputsState} 
                     createOutput={createOutput}/>
       
-      <OutputImage inputsState={inputsState} createOutput={createOutput} />
+      {canvas}
+      {/* <canvas ref={outputRef} id='outputImage'></canvas> */}
       <Footer />
     </div>
   )

@@ -59,7 +59,7 @@ export default function InputImages({ inputsState, setInputsState, createOutput}
     function handleSubmit(e){
         e.preventDefault()
         console.log('kliknięto submit')
-        //createOutput()
+        createOutput()
     }
 
     return (
