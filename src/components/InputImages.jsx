@@ -2,9 +2,6 @@ import React from 'react'
 
 export default function InputImages({ inputsState, setInputsState, createOutput}){
 
-    console.clear()
-    console.log(inputsState)
-
     function handleInput(e){
         e.preventDefault()
         console.log("To jest otrzymane: "+e.target.id)
@@ -74,7 +71,7 @@ export default function InputImages({ inputsState, setInputsState, createOutput}
                     </label>
                     <input onChange={handleInput} id={el.imageId} type="file" multiple />
                     <div className='number-inputs-wrapper'>
-                        <label htmlFor={el.imageId+'Red'}>Red:</label>
+                        <label htmlFor={index+'red'}>Red:</label>
                         <input  onChange={handleInput} 
                                 id={index+'red'} 
                                 name={el.imageId+'Red'} 
@@ -83,7 +80,7 @@ export default function InputImages({ inputsState, setInputsState, createOutput}
                                 value={el.red}
                                 data={{red: 'red'}}>
                         </input>
-                        <label htmlFor={el.imageId+'Green'}>Green:</label>
+                        <label htmlFor={index+'green'}>Green:</label>
                         <input  onChange={handleInput} 
                                 id={index+'green'} 
                                 name={el.imageId+'Green'} 
@@ -91,7 +88,7 @@ export default function InputImages({ inputsState, setInputsState, createOutput}
                                 min='0' max='100' 
                                 value={el.green}>
                         </input>
-                        <label htmlFor={el.imageId+'Blue'}>Blue:</label>
+                        <label htmlFor={index+'blue'}>Blue:</label>
                         <input  onChange={handleInput} 
                                 id={index+'blue'} 
                                 name={el.imageId+'Blue'} 
