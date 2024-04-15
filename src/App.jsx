@@ -76,14 +76,34 @@ const [inputsState, setInputsState] = React.useState(imagesArray)
 function createOutput(){
   console.log('odpalam funkcje w rodzicu')
 
+
+  const image = new Image()
+  image.src = inputsState[0].imageUrl
+
   const canvas = canvasRef.current
   const context = canvas.getContext('2d')
 
 
-  context.fillStyle = '#000000'
-  context.fillRect(0, 0, context.canvas.width, context.canvas.height)
+  // context.fillStyle = '#000000'
+  // context.fillRect(0, 0, context.canvas.width, context.canvas.height)
 
-  // setCanvas(<div>a co tam</div>)
+  context.drawImage(image, 0, 0, canvas.width, canvas. height)
+
+
+
+
+// input.addEventListener('change',(e)=>{
+//   const image = new Image()
+//   let URL = window.URL;
+//   let url = URL.createObjectURL(e.target.files[0]);
+//   image.src = url;
+
+//   image.addEventListener('load', ()=>{
+//       ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
+//       // ctx.drawImage(image, 0, 0)
+//   })
+// })
+
 
   
 }
