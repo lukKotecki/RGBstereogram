@@ -6,7 +6,7 @@ import OutputImage from './components/OutputImage'
 
 function App() {
 
-const outputRef = React.useRef(null)
+const canvasRef = React.useRef(null)
 
 const [canvas, setCanvas] = React.useState(<div></div>)
 
@@ -76,10 +76,14 @@ const [inputsState, setInputsState] = React.useState(imagesArray)
 function createOutput(){
   console.log('odpalam funkcje w rodzicu')
 
+  const canvas = canvasRef.current
+  const context = canvas.getContext('2d')
 
 
+  context.fillStyle = '#000000'
+  context.fillRect(0, 0, context.canvas.width, context.canvas.height)
 
-  setCanvas(<div>a co tam</div>)
+  // setCanvas(<div>a co tam</div>)
 
   
 }
@@ -92,8 +96,8 @@ return (
                     setInputsState={setInputsState} 
                     createOutput={createOutput}/>
       
-      {canvas}
-      {/* <canvas ref={outputRef} id='outputImage'></canvas> */}
+      {/* {canvas} */}
+      <canvas ref={canvasRef} id='outputImage'></canvas>
       <Footer />
     </div>
   )
