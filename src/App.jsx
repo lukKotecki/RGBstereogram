@@ -61,18 +61,20 @@ function App() {
     const firstImage = new Image()
     firstImage.src = inputsState[0].imageUrl
     firstCtx.drawImage(firstImage, 0, 0, outputCanvas.width, outputCanvas.height)
-    const firstData = firstCtx.getImageData(0,0, outputCanvas.width, outputCanvas.height)
+    const firstData = firstCtx.getImageData(0,0, outputCanvas.width, outputCanvas.height).data
     const secondImage = new Image()
     secondImage.src = inputsState[1].imageUrl
     secondCtx.drawImage(outputImage, 0, 0, outputCanvas.width, outputCanvas.height)
-    const secondData =secondCtx.getImageData(0,0, outputCanvas.width, outputCanvas.height)
+    const secondData =secondCtx.getImageData(0,0, outputCanvas.width, outputCanvas.height).data
     const thirdImage = new Image()
     thirdImage.src = inputsState[2].imageUrl
     thirdCtx.drawImage(thirdImage, 0, 0, outputCanvas.width, outputCanvas.height)
-    const thirdData = thirdCtx.getImageData(0,0, outputCanvas.width, outputCanvas.height)
+    const thirdData = thirdCtx.getImageData(0,0, outputCanvas.width, outputCanvas.height).data
+
 
     const imageData = outputCtx.getImageData(0,0, outputCanvas.width, outputCanvas.height)
     const data = imageData.data
+    console.log(data)
     for (let i = 0; i < data.length; i += 4) {
         const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
         data[i] = avg; // red
@@ -80,9 +82,7 @@ function App() {
         data[i + 2] = avg; // blue
       }
     outputCtx.putImageData(imageData, 0, 0);
-
     
-
   }
 
 
