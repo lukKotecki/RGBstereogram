@@ -55,8 +55,8 @@ function App() {
 
 
     const outputImage = new Image()
-    outputImage.src = inputsState[0].imageUrl
-    outputCtx.drawImage(outputImage, 0, 0, outputCanvas.width, outputCanvas.height)
+    // outputImage.src = inputsState[0].imageUrl
+    // outputCtx.drawImage(outputImage, 0, 0, outputCanvas.width, outputCanvas.height)
 
     const firstImage = new Image()
     firstImage.src = inputsState[0].imageUrl
@@ -72,18 +72,38 @@ function App() {
     const thirdData = thirdCtx.getImageData(0,0, outputCanvas.width, outputCanvas.height).data
 
 
-    const imageData = outputCtx.getImageData(0,0, outputCanvas.width, outputCanvas.height)
-    const data = imageData.data
-    console.log(data)
-    for (let i = 0; i < data.length; i += 4) {
-        const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
-        data[i] = avg; // red
-        data[i + 1] = avg; // green
-        data[i + 2] = avg; // blue
-      }
-    outputCtx.putImageData(imageData, 0, 0);
+    // const imageData = outputCtx.getImageData(0,0, outputCanvas.width, outputCanvas.height)
+    // const data = imageData.data
+    // console.log(data)
+    // for (let i = 0; i < data.length; i += 4) {
+    //     const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+    //     data[i] = avg; // red
+    //     data[i + 1] = avg; // green
+    //     data[i + 2] = avg; // blue
+    //   }
+    // outputCtx.putImageData(imageData, 0, 0);
+
     
+    let imageData = firstCtx.getImageData(0, 0, firstCanvas.width, firstCanvas.height);
+    let data = imageData.data;
+
+
+    for(let i=0; i<100000; i+=4){
+      data[i] = 0;     // Red
+      data[i + 1] = 255;   // Green
+      data[i + 2] = 0;   // Blue
+      data[i + 3] = 255; // Alpha
+    }
+
+    outputCtx.putImageData(imageData, 0, 0)
+
   }
+
+
+  const getColorIndicesForCoord = (x, y, width) => {
+    const red = y * (width * 4) + x * 4;
+    return [red, red + 1, red + 2, red + 3];
+  };
 
 
 return (
