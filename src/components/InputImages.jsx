@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function InputImages({ inputsState, setInputsState, createOutput}){
+export default function InputImages({ inputsState, setInputsState, createOutput, runMain}){
 
     function handleInput(e){
         e.preventDefault()
@@ -44,6 +44,7 @@ export default function InputImages({ inputsState, setInputsState, createOutput}
     function handleSubmit(e){
         e.preventDefault()
         createOutput()
+        runMain()
     }
 
     return (

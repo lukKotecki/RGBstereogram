@@ -36,10 +36,9 @@ function App() {
   console.clear()
   console.log(inputsState)
 
-  function createOutput(){
+  function createOutput(generate){
     console.log('Odpalam funkcje w rodzicu')
-
-
+    
 
   }
 
