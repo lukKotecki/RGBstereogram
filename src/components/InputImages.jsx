@@ -39,23 +39,10 @@ export default function InputImages({ inputsState, setInputsState, createOutput}
                 return
         }
 
-
-
-
-
-        // // to dzialalo stare
-        // setInputsState(prev => prev.map((el, index)=>{
-        //     const url = window.URL.createObjectURL(e.target.files[0])
-        //     console.log(url)
-        //     return el.imageId == e.target.id ? 
-        //         {...el, imageUrl: url } : el
-        // }))
-
     }
 
     function handleSubmit(e){
         e.preventDefault()
-        console.log('kliknięto submit')
         createOutput()
     }
 
@@ -99,17 +86,12 @@ export default function InputImages({ inputsState, setInputsState, createOutput}
                 </div>
             </div>)}
 
-
-
             <div className='input-wrapper'>
                 <div className="number-inputs-wrapper">
-
                     <label htmlFor='input-width'>width: </label>
                     <input className='input-dimensions' id='input-width' type='number' min='1' max='10000'></input>
                     <label htmlFor='height-width'>height: </label>
                     <input className='input-dimensions' id='height-width' type='number' min='1' max='10000'></input>
-                    
-                    
                 </div>
                 <input id='submit' type='submit'value='calculate'/>
             </div>
