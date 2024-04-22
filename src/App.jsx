@@ -33,18 +33,20 @@ function App() {
     }, 
   ]
   const [inputsState, setInputsState] = React.useState(initialState)
+  
+  const [outputImage, setOutputImage] = React.useState(null)
+  
+  React.useEffect(()=>{
+    setOutputImage(<OutputImage inputsState={inputsState}/>)
+  },[inputsState])
+
+
+  
   console.clear()
   console.log(inputsState)
 
 
 
-
-  const [reRender, setReRender ] = React.useState(null)
-
-  function createOutput(generate){
-    console.log('Odpalam funkcje w rodzicu')
-    setReRender(<OutputImage inputsState={inputsState}/>)
-  }
 
 
   const getColorIndicesForCoord = (x, y, width) => {
@@ -59,9 +61,9 @@ return (
       <Header />
       <InputImages  inputsState={inputsState} 
                     setInputsState={setInputsState} 
-                    createOutput={createOutput}/>
+      />
       
-      {reRender}
+      {outputImage}
 
 
       <Footer />

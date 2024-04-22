@@ -67,7 +67,7 @@ export default function OutputImage({inputsState}){
             outputCtx.putImageData(imageData, 0, 0)
 
 
-    }, [])
+    }, [inputsState])
 
     return (
         <>
