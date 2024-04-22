@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function InputImages({ inputsState, setInputsState, createOutput, runMain}){
+export default function InputImages({ inputsState, setInputsState, createOutput}){
 
     function handleInput(e){
         e.preventDefault()
@@ -43,8 +43,9 @@ export default function InputImages({ inputsState, setInputsState, createOutput,
 
     function handleSubmit(e){
         e.preventDefault()
+        console.log('kliku')
         createOutput()
-        runMain()
+
     }
 
     return (

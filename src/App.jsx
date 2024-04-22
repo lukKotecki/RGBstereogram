@@ -36,16 +36,23 @@ function App() {
   console.clear()
   console.log(inputsState)
 
+
+
+
+  const [reRender, setReRender ] = React.useState(null)
+
   function createOutput(generate){
     console.log('Odpalam funkcje w rodzicu')
-    
-
+    setReRender(<OutputImage inputsState={inputsState}/>)
   }
+
 
   const getColorIndicesForCoord = (x, y, width) => {
     const red = y * (width * 4) + x * 4;
     return [red, red + 1, red + 2, red + 3];
   };
+
+
 
 return (
     <div className='container'>
@@ -54,7 +61,8 @@ return (
                     setInputsState={setInputsState} 
                     createOutput={createOutput}/>
       
-      <OutputImage inputsState={inputsState}/>
+      {reRender}
+
 
       <Footer />
     </div>
