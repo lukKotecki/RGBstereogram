@@ -15,7 +15,10 @@ function App() {
       imageUrl: whiteNoiseImage,
       red: 90,
       green: 1,
-      blue: 2 
+      blue: 2,
+      width: 300,
+      height: 150,
+      chunkSize: 10,
     }, 
     {
       imageId: 'secondImage',
@@ -40,14 +43,8 @@ function App() {
     setOutputImage(<OutputImage inputsState={inputsState}/>)
   },[inputsState])
 
-
-  
   console.clear()
   console.log(inputsState)
-
-
-
-
 
   const getColorIndicesForCoord = (x, y, width) => {
     const red = y * (width * 4) + x * 4;

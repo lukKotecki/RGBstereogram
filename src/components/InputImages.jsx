@@ -44,7 +44,7 @@ export default function InputImages({ inputsState, setInputsState}){
     function handleSubmit(e){
         e.preventDefault()
         console.log('kliku')
-
+        setInputsState(prev=> [...prev])
     }
 
     return (
@@ -90,11 +90,14 @@ export default function InputImages({ inputsState, setInputsState}){
             <div className='input-wrapper'>
                 <div className="number-inputs-wrapper">
                     <label htmlFor='input-width'>width: </label>
-                    <input className='input-dimensions' id='input-width' type='number' min='1' max='10000'></input>
+                    <input className='input-dimensions' id='input-width' value={inputsState[0].width} type='number' min='1' max='10000'></input>
                     <label htmlFor='height-width'>height: </label>
-                    <input className='input-dimensions' id='height-width' type='number' min='1' max='10000'></input>
+                    <input className='input-dimensions' id='height-width' value={inputsState[0].height} type='number' min='1' max='10000'></input>
+                    <br/>
+                    <label htmlFor='chunk-size'>chunk size: </label>
+                    <input className='input-dimensions' id='chunk-size' value={inputsState[0].chunkSize} type='number' min='1' max='10000'></input>
                 </div>
-                <input id='submit' type='submit'value='calculate'/>
+                <input id='submit' type='submit'value='recalculate'/>
             </div>
 
         </form>

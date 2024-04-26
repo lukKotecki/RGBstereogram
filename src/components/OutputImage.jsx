@@ -10,13 +10,13 @@ export default function OutputImage({inputsState}){
     React.useEffect(()=>{
         
             const outputCanvas = outputCanvasRef.current
-            const outputCtx = outputCanvas.getContext('2d')
+            const outputCtx = outputCanvas.getContext('2d',{ willReadFrequently: true })
             const firstCanvas = firstCanvasRef.current
-            const firstCtx = firstCanvas.getContext('2d')
+            const firstCtx = firstCanvas.getContext('2d',{ willReadFrequently: true })
             const secondCanvas = secondCanvasRef.current
-            const secondCtx = secondCanvas.getContext('2d')
+            const secondCtx = secondCanvas.getContext('2d',{ willReadFrequently: true })
             const thirdCanvas = thirdCanvasRef.current
-            const thirdCtx = thirdCanvas.getContext('2d')
+            const thirdCtx = thirdCanvas.getContext('2d',{ willReadFrequently: true })
         
             const outputImage = new Image()
             // outputImage.src = inputsState[0].imageUrl
@@ -67,7 +67,7 @@ export default function OutputImage({inputsState}){
             outputCtx.putImageData(imageData, 0, 0)
 
 
-    }, [inputsState])
+    })
 
     return (
         <>
