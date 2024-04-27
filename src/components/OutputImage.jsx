@@ -71,11 +71,10 @@ export default function OutputImage({inputsState}){
 
     return (
         <>
-            To jest cos
-            <canvas ref={outputCanvasRef} id='outputImage'></canvas>
-            <canvas style={{display:'initial'}} ref={firstCanvasRef}></canvas>
-            <canvas style={{display:'initial'}} ref={secondCanvasRef}></canvas>
-            <canvas style={{display:'initial'}} ref={thirdCanvasRef}></canvas>
+            <canvas width={inputsState[0].width} height={inputsState[0].height} ref={outputCanvasRef} id='outputImage'></canvas>
+            <canvas width={inputsState[0].width} height={inputsState[0].height} style={{display:'initial'}} ref={firstCanvasRef}></canvas>
+            <canvas width={inputsState[0].width} height={inputsState[0].height} style={{display:'initial'}} ref={secondCanvasRef}></canvas>
+            <canvas width={inputsState[0].width} height={inputsState[0].height} style={{display:'initial'}} ref={thirdCanvasRef}></canvas>
         </>
     )
 }

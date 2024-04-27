@@ -4,10 +4,18 @@ export default function InputImages({ inputsState, setInputsState}){
 
     function handleInput(e){
         e.preventDefault()
-        console.log("To jest otrzymane: "+e.target.id)
         if(e.target.type === 'number'){
-            setInputsState(prev => prev.map((el, index)=> index == e.target.id.slice(0,1) ? 
-                            {...el, [e.target.id.slice(1)]: e.target.value}: el ))
+            if(e.target.id === 'width' || e.target.id === 'height' || e.target.id === 'chunkSize' ){
+                setInputsState(prev=> prev.map((el, index) => {
+                    if(index === 0){
+                        return {...el, [e.target.id]: e.target.value}
+                    }else
+                        return {...el}
+                }))
+            }else{
+                setInputsState(prev => prev.map((el, index)=> index == e.target.id.slice(0,1) ? 
+                {...el, [e.target.id.slice(1)]: e.target.value}: el ))
+            }
         }
         if(e.target.type === 'file'){
             handleImageUpload(e)
@@ -89,13 +97,31 @@ export default function InputImages({ inputsState, setInputsState}){
 
             <div className='input-wrapper'>
                 <div className="number-inputs-wrapper">
-                    <label htmlFor='input-width'>width: </label>
-                    <input className='input-dimensions' id='input-width' value={inputsState[0].width} type='number' min='1' max='10000'></input>
-                    <label htmlFor='height-width'>height: </label>
-                    <input className='input-dimensions' id='height-width' value={inputsState[0].height} type='number' min='1' max='10000'></input>
+                    <label htmlFor='width'>width: </label>
+                    <input 
+                        onChange={handleInput} 
+                        className='input-dimensions' 
+                        id='width' value={inputsState[0].width} 
+                        type='number' 
+                        min='1' max='10000'>
+                    </input>
+                    <label htmlFor='height'>height: </label>
+                    <input
+                        onChange={handleInput} 
+                        className='input-dimensions' 
+                        id='height' 
+                        value={inputsState[0].height} 
+                        type='number' min='1' max='10000'>
+                    </input>
                     <br/>
-                    <label htmlFor='chunk-size'>chunk size: </label>
-                    <input className='input-dimensions' id='chunk-size' value={inputsState[0].chunkSize} type='number' min='1' max='10000'></input>
+                    <label htmlFor='chunkSize'>chunk size: </label>
+                    <input 
+                        onChange={handleInput} 
+                        className='input-dimensions' 
+                        id='chunkSize' 
+                        value={inputsState[0].chunkSize} 
+                        type='number' min='1' max='10000'>
+                    </input>
                 </div>
                 <input id='submit' type='submit'value='recalculate'/>
             </div>
