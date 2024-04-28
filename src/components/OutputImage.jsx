@@ -7,7 +7,7 @@ export default function OutputImage({inputsState}){
     const secondCanvasRef = React.useRef(null)
     const thirdCanvasRef = React.useRef(null)
 
-    const canvasRef = React.useRef(new Array)
+    const canvasRef = React.useRef([])
 
     inputsState.map(item => (
       <p key={item} ref={(element) => itemEls.current.push(element)}>{item}</p>
@@ -24,6 +24,18 @@ export default function OutputImage({inputsState}){
             const secondCtx = secondCanvas.getContext('2d',{ willReadFrequently: true })
             const thirdCanvas = thirdCanvasRef.current
             const thirdCtx = thirdCanvas.getContext('2d',{ willReadFrequently: true })
+
+            console.log(canvasRef.current[0])
+            // console.log(canvasRef)
+
+            const canvasArray = canvasRef.current.map(el=>el)
+            const canvasCtx = canvasArray.map(el => el.getContext('2d'),{ willReadFrequently: true })
+            canvasCtx.forEach((el, index) => {
+              console.log(el)
+              const image = new Image()
+              el.src = inputsState[index].imageUrl
+              el.drawImage(image, 0, 0, outputCanvas.width, outputCanvas.height)
+            })
         
             const outputImage = new Image()
             // outputImage.src = inputsState[0].imageUrl
@@ -83,9 +95,19 @@ export default function OutputImage({inputsState}){
             <canvas width={inputsState[0].width} height={inputsState[0].height} style={{display:'initial'}} ref={secondCanvasRef}></canvas>
             <canvas width={inputsState[0].width} height={inputsState[0].height} style={{display:'initial'}} ref={thirdCanvasRef}></canvas>
 
-            {/* {canvasRef} */}
+            {inputsState.map((item, index) => (
+              <div key={index}>
+                <canvas 
+                  width={inputsState[0].width} 
+                  height={inputsState[0].height} 
+                  style={{display:'initial'}} 
+                  ref={element => canvasRef.current[index] = element}>
+                  {/* ref={element => canvasRef.current.push(element)}> */}
 
-            
+                </canvas>
+
+              </div>
+            ))}
         </>
     )
 }
