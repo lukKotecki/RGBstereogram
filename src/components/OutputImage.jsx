@@ -6,6 +6,13 @@ export default function OutputImage({inputsState}){
     const firstCanvasRef = React.useRef(null)
     const secondCanvasRef = React.useRef(null)
     const thirdCanvasRef = React.useRef(null)
+
+    const canvasRef = React.useRef(new Array)
+
+    inputsState.map(item => (
+      <p key={item} ref={(element) => itemEls.current.push(element)}>{item}</p>
+     ))
+
   
     React.useEffect(()=>{
         
@@ -75,6 +82,10 @@ export default function OutputImage({inputsState}){
             <canvas width={inputsState[0].width} height={inputsState[0].height} style={{display:'initial'}} ref={firstCanvasRef}></canvas>
             <canvas width={inputsState[0].width} height={inputsState[0].height} style={{display:'initial'}} ref={secondCanvasRef}></canvas>
             <canvas width={inputsState[0].width} height={inputsState[0].height} style={{display:'initial'}} ref={thirdCanvasRef}></canvas>
+
+            {/* {canvasRef} */}
+
+            
         </>
     )
 }
