@@ -16,7 +16,7 @@ function App() {
       red: 90,
       green: 1,
       blue: 2,
-      width: 400,
+      width: 300,
       height: 150,
       chunkSize: 10,
     }, 

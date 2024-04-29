@@ -25,15 +25,13 @@ export default function OutputImage({inputsState}){
             const thirdCanvas = thirdCanvasRef.current
             const thirdCtx = thirdCanvas.getContext('2d',{ willReadFrequently: true })
 
-            console.log(canvasRef.current[0])
-            // console.log(canvasRef)
-
+            
             const canvasArray = canvasRef.current.map(el=>el)
             const canvasCtx = canvasArray.map(el => el.getContext('2d'),{ willReadFrequently: true })
             canvasCtx.forEach((el, index) => {
               console.log(el)
               const image = new Image()
-              el.src = inputsState[index].imageUrl
+              image.src = inputsState[index].imageUrl
               el.drawImage(image, 0, 0, outputCanvas.width, outputCanvas.height)
             })
         
