@@ -9,7 +9,6 @@ export default function OutputImage({inputsState}){
 
     const canvasRef = React.useRef([])
 
-  
     React.useEffect(()=>{
         
             const outputCanvas = outputCanvasRef.current
