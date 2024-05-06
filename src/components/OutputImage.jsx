@@ -50,17 +50,14 @@ export default function OutputImage({inputsState}){
             // firstImage.src = inputsState[0].imageUrl
             // firstCtx.drawImage(firstImage, 0, 0, outputCanvas.width, outputCanvas.height)
             // const firstData = firstCtx.getImageData(0,0, outputCanvas.width, outputCanvas.height).data
-        
             // const secondImage = new Image()
             // secondImage.src = inputsState[1].imageUrl
             // secondCtx.drawImage(secondImage, 0, 0, outputCanvas.width, outputCanvas.height)
             // const secondData =secondCtx.getImageData(0,0, outputCanvas.width, outputCanvas.height).data
-        
             // const thirdImage = new Image()
             // thirdImage.src = inputsState[2].imageUrl
             // thirdCtx.drawImage(thirdImage, 0, 0, outputCanvas.width, outputCanvas.height)
             // const thirdData = thirdCtx.getImageData(0,0, outputCanvas.width, outputCanvas.height).data
-        
             // let imageData = secondCtx.getImageData(0, 0, firstCanvas.width, firstCanvas.height);
             // let data = imageData.data;
         
