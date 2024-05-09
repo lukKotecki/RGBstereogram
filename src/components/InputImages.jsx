@@ -114,12 +114,20 @@ export default function InputImages({ inputsState, setInputsState}){
                         type='number' min='1' max='10000'>
                     </input>
                     <br/>
-                    <label htmlFor='chunkSize'>chunk size: </label>
+                    <label htmlFor='chunkWidth'>chunk width: </label>
                     <input 
                         onChange={handleInput} 
                         className='input-dimensions' 
-                        id='chunkSize' 
-                        value={inputsState[0].chunkSize} 
+                        id='chunkWidth' 
+                        value={inputsState[0].chunkWidth} 
+                        type='number' min='1' max='10000'>
+                    </input>
+                    <label htmlFor='chunkHeight'>chunk height: </label>
+                    <input 
+                        onChange={handleInput} 
+                        className='input-dimensions' 
+                        id='chunkHeight' 
+                        value={inputsState[0].chunkHeight} 
                         type='number' min='1' max='10000'>
                     </input>
                 </div>

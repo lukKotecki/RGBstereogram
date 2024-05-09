@@ -4,6 +4,8 @@ import Footer from './components/Footer'
 import InputImages from './components/InputImages'
 import OutputImage from './components/OutputImage'
 import whiteNoiseImage from './assets/images/white_noise.png'
+import grayImage from './assets/images/gray.png'
+import blackImage from './assets/images/black.png'
 import boyImage from './assets/images/boy-image.jpg'
 import dogImage from './assets/images/dog-image.jpeg'
 
@@ -12,13 +14,14 @@ function App() {
   const initialState = [
     {
       imageId: 'firstImage',
-      imageUrl: whiteNoiseImage,
+      imageUrl: grayImage,
       red: 90,
       green: 1,
       blue: 2,
       width: 300,
       height: 150,
-      chunkSize: 10,
+      chunkWidth: 10,
+      chunkHeight: 20,
     }, 
     {
       imageId: 'secondImage',
