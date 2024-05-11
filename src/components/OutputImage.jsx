@@ -30,10 +30,12 @@ export default function OutputImage({inputsState}){
     const data = outputImageData.data
 
     let lineNumber = 0
-    for(let i=0, j =0; i<data.length; i+=4, j++){
 
-      if( ( j>width  )  ){
-        j=0
+    console.log(data.length)
+    for(let i=0, rowPixelCounter=0; i<data.length; i+=4, rowPixelCounter++){
+
+      if( ( rowPixelCounter>=width  )  ){
+        rowPixelCounter=0
         lineNumber++
         /*
         jezeli i < width
@@ -42,7 +44,7 @@ export default function OutputImage({inputsState}){
 
 
         */
-        console.log(lineNumber)
+        // console.log(lineNumber)
       }
 
 
