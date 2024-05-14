@@ -5,14 +5,15 @@ export default function InputImages({ inputsState, setInputsState}){
     function handleInput(e){
         e.preventDefault()
         if(e.target.type === 'number'){
-            if(e.target.id === 'width' || e.target.id === 'height' || e.target.id === 'chunkSize' ){
+            if(e.target.id === 'width' || e.target.id === 'height' || e.target.id === 'chunkWidth' || e.target.id === 'chunkHeight'){
                 setInputsState(prev=> prev.map((el, index) => {
                     if(index === 0){
                         return {...el, [e.target.id]: e.target.value}
                     }else
                         return {...el}
                 }))
-            }else{
+            }
+            else {
                 setInputsState(prev => prev.map((el, index)=> index == e.target.id.slice(0,1) ? 
                 {...el, [e.target.id.slice(1)]: e.target.value}: el ))
             }

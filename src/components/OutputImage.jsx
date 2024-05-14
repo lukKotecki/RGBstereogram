@@ -26,61 +26,39 @@ export default function OutputImage({inputsState}){
     const chunkHeight = inputsState[0].chunkHeight
     let photoOrder = 0
     let lineNumber = 0
+    let previousRowChunkOrder = 0
+    let previousColumnChunkOrder = 0
 
     for(let i=0, rowPixelCounter=0; i<data.length; i+=4, rowPixelCounter++){
 
-      if( ( rowPixelCounter>=width  )  ){
+      // czujnik nowa linia
+      if(rowPixelCounter>=width){
         rowPixelCounter=0
         lineNumber++
-        /*
-        jezeli i < width
-        iiiiiiiiiiiiiiii iiiiiiiiiii iiiiiiiiiiii
 
-
-        console.log(rowPixelCounter)
-
-        */
       }
 
-      if(lineNumber %2){
-        photoOrder =1
-      }else{
-        photoOrder = 2
+      if( (rowPixelCounter % chunkWidth) === 0){
+        if(previousRowChunkOrder === 0){
+          previousRowChunkOrder = 1
+          photoOrder = 1
+        }else if(previousRowChunkOrder === 1){
+          previousRowChunkOrder = 2
+          photoOrder = 2
+        }else{
+          previousRowChunkOrder = 0
+          photoOrder = 0
+        }
       }
+
+
 
       data[i] = inputDataArray[photoOrder][i];     // Red
       data[i + 1] = inputDataArray[photoOrder][i+1];   // Green
       data[i + 2] = inputDataArray[photoOrder][i+2];   // Blue
       data[i + 3] =  inputDataArray[photoOrder][i+3]; // Alpha
-
-
     }
     outputCtx.putImageData(outputImageData, 0, 0)
-
-    // for(let i=0, flipFlap = 0; i<data.length; i+=4, flipFlap++ ){
-    //   if(flipFlap === 0 ){
-    //     data[i] = thirdData[i];     // Red
-    //     data[i + 1] = thirdData[i+1];   // Green
-    //     data[i + 2] = thirdData[i+2];   // Blue
-    //     data[i + 3] =  thirdData[i+3]; // Alpha
-    //   }
-    //   if(flipFlap === 1) {
-    //     data[i] = firstData[i];     // Red
-    //     data[i + 1] = firstData[i+1];   // Green
-    //     data[i + 2] = firstData[i+2];   // Blue
-    //     data[i + 3] =  firstData[i+3]; // Alpha
-    //   }
-    //   if(flipFlap === 2) {
-    //     data[i] = secondData[i];     // Red
-    //     data[i + 1] = secondData[i+1];   // Green
-    //     data[i + 2] = secondData[i+2];   // Blue
-    //     data[i + 3] =  secondData[i+3]; // Alpha
-    //   }
-    //   if(flipFlap === 2){
-    //     flipFlap = -1 
-    //   }
-    // }
-    // outputCtx.putImageData(imageData, 0, 0)
   })
 
   return (
