@@ -1,22 +1,12 @@
 import React from 'react'
 
 export default function OutputImage({inputsState}){
-
   const outputCanvasRef = React.useRef(null)
   const canvasRef = React.useRef([])
 
-  React.useEffect(()=>{
-    
+  React.useEffect(()=>{    
     const outputCanvas = outputCanvasRef.current
     const outputCtx = outputCanvas.getContext('2d',{ willReadFrequently: true })
-
-    //pomocnicze
-    const width = outputCanvas.width
-    const height = outputCanvas.height
-    const chunkWidth = inputsState[0].chunkWidth
-    const chunkHeight = inputsState[0].chunkHeight
-
-    // willReadFrequently
     const inputCanvasArray = canvasRef.current.map(el=>el)
     const inputCanvasCtxArray = inputCanvasArray.map(el => el.getContext('2d',{ willReadFrequently: true }) )
     const inputDataArray = inputCanvasCtxArray.map(el => el.getImageData(0, 0, inputsState[0].width, inputsState[0].height).data) 
@@ -28,10 +18,15 @@ export default function OutputImage({inputsState}){
     // const outputImage = new Image() it's useless?
     const outputImageData = outputCtx.getImageData(0, 0, outputCanvas.width, outputCanvas.height)
     const data = outputImageData.data
-
+    
+    //pomocnicze
+    const width = outputCanvas.width
+    const height = outputCanvas.height
+    const chunkWidth = inputsState[0].chunkWidth
+    const chunkHeight = inputsState[0].chunkHeight
+    let photoOrder = 0
     let lineNumber = 0
 
-    console.log(data.length)
     for(let i=0, rowPixelCounter=0; i<data.length; i+=4, rowPixelCounter++){
 
       if( ( rowPixelCounter>=width  )  ){
@@ -47,19 +42,17 @@ export default function OutputImage({inputsState}){
         */
       }
 
-
-      if( (lineNumber % 2 )){
-        data[i] = inputDataArray[1][i];     // Red
-        data[i + 1] = inputDataArray[1][i+1];   // Green
-        data[i + 2] = inputDataArray[1][i+2];   // Blue
-        data[i + 3] =  inputDataArray[1][i+3]; // Alpha
-
+      if(lineNumber %2){
+        photoOrder =1
       }else{
-        data[i] = inputDataArray[2][i];     // Red
-        data[i + 1] = inputDataArray[2][i+1];   // Green
-        data[i + 2] = inputDataArray[2][i+2];   // Blue
-        data[i + 3] =  inputDataArray[2][i+3]; // Alpha
+        photoOrder = 2
       }
+
+      data[i] = inputDataArray[photoOrder][i];     // Red
+      data[i + 1] = inputDataArray[photoOrder][i+1];   // Green
+      data[i + 2] = inputDataArray[photoOrder][i+2];   // Blue
+      data[i + 3] =  inputDataArray[photoOrder][i+3]; // Alpha
+
 
     }
     outputCtx.putImageData(outputImageData, 0, 0)
