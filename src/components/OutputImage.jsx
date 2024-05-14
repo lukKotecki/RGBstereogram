@@ -16,10 +16,10 @@ export default function OutputImage({inputsState}){
     const chunkWidth = inputsState[0].chunkWidth
     const chunkHeight = inputsState[0].chunkHeight
 
-    
+    // willReadFrequently
     const inputCanvasArray = canvasRef.current.map(el=>el)
-    const inputCanvasCtxArray = inputCanvasArray.map(el => el.getContext('2d'),{ willReadFrequently: true })
-    const inputDataArray = inputCanvasCtxArray.map(el => el.getImageData(0, 0, inputsState[0].width, inputsState[0].height, { willReadFrequently: true }).data) 
+    const inputCanvasCtxArray = inputCanvasArray.map(el => el.getContext('2d',{ willReadFrequently: true }) )
+    const inputDataArray = inputCanvasCtxArray.map(el => el.getImageData(0, 0, inputsState[0].width, inputsState[0].height).data) 
     inputCanvasCtxArray.forEach((el, index) => {
       const image = new Image()
       image.src = inputsState[index].imageUrl
@@ -42,9 +42,9 @@ export default function OutputImage({inputsState}){
         iiiiiiiiiiiiiiii iiiiiiiiiii iiiiiiiiiiii
 
 
+        console.log(rowPixelCounter)
 
         */
-        // console.log(lineNumber)
       }
 
 
