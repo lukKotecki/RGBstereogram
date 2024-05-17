@@ -25,31 +25,47 @@ export default function OutputImage({inputsState}){
     const chunkWidth = inputsState[0].chunkWidth
     const chunkHeight = inputsState[0].chunkHeight
     let photoOrder = 0
-    let lineNumber = 0
+    let lineNumber = 1
     let previousRowChunkOrder = 0
     let previousColumnChunkOrder = 0
 
-    for(let i=0, rowPixelCounter=0; i<data.length; i+=4, rowPixelCounter++){
+    for(let i=0, rowPixelNumber=1; i<data.length; i+=4, rowPixelNumber++){
 
       // czujnik nowa linia
-      if(rowPixelCounter>=width){
-        rowPixelCounter=0
+      if(rowPixelNumber>width){
+        rowPixelNumber=1
         lineNumber++
 
       }
+      //console.log('i: '+i+' rPC: '+rowPixelNumber+' LN: '+lineNumber)
 
-      if( (rowPixelCounter % chunkWidth) === 0){
-        if(previousRowChunkOrder === 0){
-          previousRowChunkOrder = 1
-          photoOrder = 1
-        }else if(previousRowChunkOrder === 1){
-          previousRowChunkOrder = 2
-          photoOrder = 2
-        }else{
+      
+      if( (lineNumber % chunkHeight) === 0 ){
+        if(previousColumnChunkOrder === 0){
           previousRowChunkOrder = 0
-          photoOrder = 0
+          previousColumnChunkOrder = 1
+        }else if(previousColumnChunkOrder === 1){
+          previousRowChunkOrder = 1
+          previousColumnChunkOrder = 2
+        }else{
+          previousRowChunkOrder = 2
+          previousColumnChunkOrder = 0
         }
       }
+
+      // if( (rowPixelNumber % chunkWidth) === 0){
+      //   // console.log('jest zero: '+rowPixelNumber+' % '+chunkWidth)
+      //   if(previousRowChunkOrder === 0){
+      //     previousRowChunkOrder = 1
+      //     photoOrder = 1
+      //   }else if(previousRowChunkOrder === 1){
+      //     previousRowChunkOrder = 2
+      //     photoOrder = 2
+      //   }else{
+      //     previousRowChunkOrder = 0
+      //     photoOrder = 0
+      //   }
+      // }
 
 
 
