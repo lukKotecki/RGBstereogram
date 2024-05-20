@@ -26,46 +26,50 @@ export default function OutputImage({inputsState}){
     const chunkHeight = inputsState[0].chunkHeight
     let photoOrder = 0
     let lineNumber = 1
-    let previousRowChunkOrder = 0
-    let previousColumnChunkOrder = 0
+    let rowChunkOrder = 0
+    let columnChunkOrder = 0
+    let isItUniqueHeightLoop = false
 
-    for(let i=0, rowPixelNumber=1; i<data.length; i+=4, rowPixelNumber++){
-
-      // czujnik nowa linia
-      if(rowPixelNumber>width){
-        rowPixelNumber=1
-        lineNumber++
-
-      }
+    for(let i=0, rowPixelCounter=1; i<data.length; i+=4, rowPixelCounter++){
       //console.log('i: '+i+' rPC: '+rowPixelNumber+' LN: '+lineNumber)
 
-      
-      if( (lineNumber % chunkHeight) === 0 ){
-        if(previousColumnChunkOrder === 0){
-          previousRowChunkOrder = 0
-          previousColumnChunkOrder = 1
-        }else if(previousColumnChunkOrder === 1){
-          previousRowChunkOrder = 1
-          previousColumnChunkOrder = 2
-        }else{
-          previousRowChunkOrder = 2
-          previousColumnChunkOrder = 0
-        }
+      // when there is new line of pixels
+      if(rowPixelCounter>width){
+        rowPixelCounter=1
+        lineNumber++
+        columnChunkOrder = rowChunkOrder // remember columnChunkOrder when new line occures
       }
 
-      // if( (rowPixelNumber % chunkWidth) === 0){
-      //   // console.log('jest zero: '+rowPixelNumber+' % '+chunkWidth)
-      //   if(previousRowChunkOrder === 0){
-      //     previousRowChunkOrder = 1
-      //     photoOrder = 1
-      //   }else if(previousRowChunkOrder === 1){
-      //     previousRowChunkOrder = 2
-      //     photoOrder = 2
-      //   }else{
-      //     previousRowChunkOrder = 0
-      //     photoOrder = 0
-      //   }
-      // }
+      // when height is equal chunkHeight change it's order
+      if( ((lineNumber % chunkHeight) === 0) && isItUniqueHeightLoop ){
+        // console.log(lineNumber)
+        isItUniqueHeightLoop = false
+        if(rowChunkOrder === 0){
+          rowChunkOrder = 1
+        }else if(rowChunkOrder === 1){
+          rowChunkOrder = 2
+        }else{
+          rowChunkOrder = 0
+        }
+      }
+      if( lineNumber % chunkHeight){
+        isItUniqueHeightLoop = true
+      }
+
+      // when in line rowPixelCounter equals chunkWidth 
+      if( ((rowPixelCounter % chunkWidth) === 0) ){
+        // console.log('jest zero: '+rowPixelNumber+' % '+chunkWidth)
+        if(columnChunkOrder === 0){
+          columnChunkOrder = 1
+          photoOrder = 1
+        }else if(columnChunkOrder === 1){
+          columnChunkOrder = 2
+          photoOrder = 2
+        }else{
+          columnChunkOrder = 0
+          photoOrder = 0
+        }
+      }
 
 
 
