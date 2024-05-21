@@ -29,6 +29,7 @@ export default function OutputImage({inputsState}){
     let rowChunkOrder = 0
     let columnChunkOrder = 0
     let isItUniqueHeightLoop = false
+    let averageOfRGB = 0
 
     for(let i=0, rowPixelCounter=1; i<data.length; i+=4, rowPixelCounter++){
       //console.log('i: '+i+' rPC: '+rowPixelNumber+' LN: '+lineNumber)
@@ -71,15 +72,20 @@ export default function OutputImage({inputsState}){
         }
       }
 
+      averageOfRGB = (inputDataArray[photoOrder][i] + inputDataArray[photoOrder][i+1] + inputDataArray[photoOrder][i+2]) / 3
 
-
-      data[i] = inputDataArray[photoOrder][i];     // Red
-      data[i + 1] = inputDataArray[photoOrder][i+1];   // Green
-      data[i + 2] = inputDataArray[photoOrder][i+2];   // Blue
+      data[i] = averageOfRGB *inputsState[photoOrder].red;    // Red
+      data[i + 1] = averageOfRGB;   // Green
+      data[i + 2] = averageOfRGB;   // Blue
       data[i + 3] =  inputDataArray[photoOrder][i+3]; // Alpha
     }
     outputCtx.putImageData(outputImageData, 0, 0)
   })
+
+  function changeImagesColor(){
+
+
+  }
 
   return (
       <>
