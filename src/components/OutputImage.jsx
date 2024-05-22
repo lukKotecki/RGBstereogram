@@ -74,9 +74,9 @@ export default function OutputImage({inputsState}){
 
       averageOfRGB = (inputDataArray[photoOrder][i] + inputDataArray[photoOrder][i+1] + inputDataArray[photoOrder][i+2]) / 3
 
-      data[i] = averageOfRGB *inputsState[photoOrder].red;    // Red
-      data[i + 1] = averageOfRGB;   // Green
-      data[i + 2] = averageOfRGB;   // Blue
+      data[i] = Math.round( (averageOfRGB * inputsState[photoOrder].red) / 100 );    // Red
+      data[i + 1] = Math.round( (averageOfRGB * inputsState[photoOrder].green) / 100 );   // Green
+      data[i + 2] = Math.round( (averageOfRGB * inputsState[photoOrder].blue) / 100 );   // Blue
       data[i + 3] =  inputDataArray[photoOrder][i+3]; // Alpha
     }
     outputCtx.putImageData(outputImageData, 0, 0)
@@ -96,7 +96,7 @@ export default function OutputImage({inputsState}){
               <canvas 
                 width={inputsState[0].width} 
                 height={inputsState[0].height} 
-                style={{display:'initial'}} 
+                style={{display:'none'}} 
                 ref={element => canvasRef.current[index] = element}>
                 {/* ref={element => canvasRef.current.push(element)}> */}
 
