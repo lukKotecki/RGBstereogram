@@ -42,8 +42,8 @@ export default function OutputImage({inputsState}){
       }
 
       // when height is equal chunkHeight change it's order
-      if( ((lineNumber % chunkHeight) === 0) && changeFirstInLineChunkOrder ){
-        // console.log(lineNumber)
+      if( chunkHeight == 1 || ((lineNumber % chunkHeight) === 0) && changeFirstInLineChunkOrder ){
+        console.log( chunkHeight )
         changeFirstInLineChunkOrder = false
         if(firstInLineChunkOrder === 0){
           firstInLineChunkOrder = 1
