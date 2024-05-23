@@ -26,9 +26,9 @@ export default function OutputImage({inputsState}){
     const chunkHeight = inputsState[0].chunkHeight
     let photoOrder = 0
     let lineNumber = 1
-    let rowChunkOrder = 0
+    let firstInLineChunkOrder = 0
     let columnChunkOrder = 0
-    let isItUniqueHeightLoop = false
+    let changeFirstInLineChunkOrder = false
     let averageOfRGB = 0
 
     for(let i=0, rowPixelCounter=1; i<data.length; i+=4, rowPixelCounter++){
@@ -38,23 +38,23 @@ export default function OutputImage({inputsState}){
       if(rowPixelCounter>width){
         rowPixelCounter=1
         lineNumber++
-        columnChunkOrder = rowChunkOrder // remember columnChunkOrder when new line occures
+        columnChunkOrder = firstInLineChunkOrder // remember columnChunkOrder when new line occures
       }
 
       // when height is equal chunkHeight change it's order
-      if( ((lineNumber % chunkHeight) === 0) && isItUniqueHeightLoop ){
+      if( ((lineNumber % chunkHeight) === 0) && changeFirstInLineChunkOrder ){
         // console.log(lineNumber)
-        isItUniqueHeightLoop = false
-        if(rowChunkOrder === 0){
-          rowChunkOrder = 1
-        }else if(rowChunkOrder === 1){
-          rowChunkOrder = 2
+        changeFirstInLineChunkOrder = false
+        if(firstInLineChunkOrder === 0){
+          firstInLineChunkOrder = 1
+        }else if(firstInLineChunkOrder === 1){
+          firstInLineChunkOrder = 2
         }else{
-          rowChunkOrder = 0
+          firstInLineChunkOrder = 0
         }
       }
       if( lineNumber % chunkHeight){
-        isItUniqueHeightLoop = true
+        changeFirstInLineChunkOrder = true
       }
 
       // when in line rowPixelCounter equals chunkWidth 
@@ -82,10 +82,7 @@ export default function OutputImage({inputsState}){
     outputCtx.putImageData(outputImageData, 0, 0)
   })
 
-  function changeImagesColor(){
 
-
-  }
 
   return (
       <>

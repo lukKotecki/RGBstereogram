@@ -73,7 +73,7 @@ export default function InputImages({ inputsState, setInputsState}){
                                 id={index+'red'} 
                                 name={el.imageId+'Red'} 
                                 type='number' 
-                                min='0' max='100' 
+                                min='0' max='255' 
                                 value={el.red}
                                 data={{red: 'red'}}>
                         </input>
@@ -82,7 +82,7 @@ export default function InputImages({ inputsState, setInputsState}){
                                 id={index+'green'} 
                                 name={el.imageId+'Green'} 
                                 type='number' 
-                                min='0' max='100' 
+                                min='0' max='255' 
                                 value={el.green}>
                         </input>
                         <label htmlFor={index+'blue'}>Blue:</label>
@@ -90,7 +90,7 @@ export default function InputImages({ inputsState, setInputsState}){
                                 id={index+'blue'} 
                                 name={el.imageId+'Blue'} 
                                 type='number' 
-                                min='0' max='100' 
+                                min='0' max='255' 
                                 value={el.blue}>
                         </input>
                 </div>
