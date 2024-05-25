@@ -27,7 +27,7 @@ export default function OutputImage({inputsState}){
     let lineNumber = 1
     let firstInLineChunkOrder = 0
     let columnChunkOrder = 0
-    let uniqueLineNumber = false
+    let uniqueLineNumber = true
     let averageOfRGB = 0
     
 
@@ -44,10 +44,31 @@ export default function OutputImage({inputsState}){
         rowPixelCounter=1
         lineNumber++
         columnChunkOrder = firstInLineChunkOrder // remember columnChunkOrder when new line occures
+
+        if(columnChunkOrder === 0){
+          columnChunkOrder = 1
+          photoOrder = 1
+        }else if(columnChunkOrder === 1){
+          columnChunkOrder = 2
+          photoOrder = 2
+        }else{
+          columnChunkOrder = 0
+          photoOrder = 0
+        }
+
+      }
+      if(chunkHeight == 1){
+        if(firstInLineChunkOrder === 0){
+          firstInLineChunkOrder = 1
+        }else if(firstInLineChunkOrder === 1){
+          firstInLineChunkOrder = 2
+        }else{
+          firstInLineChunkOrder = 0
+        }
       }
 
       // when height is equal chunkHeight change it's order
-      if( chunkHeight == 1 || ((lineNumber % chunkHeight) === 0) && uniqueLineNumber ){
+      if( ((lineNumber % chunkHeight) === 0) && uniqueLineNumber ){
         console.log( chunkHeight )
         uniqueLineNumber = false
         if(firstInLineChunkOrder === 0){
