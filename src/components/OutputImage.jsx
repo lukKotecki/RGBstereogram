@@ -24,7 +24,7 @@ export default function OutputImage({inputsState}){
     const chunkWidth = inputsState[0].chunkWidth
     const chunkHeight = inputsState[0].chunkHeight
     let photoOrder = 0
-    let lineNumber = 1
+    let lineNumber = chunkHeight
     let firstInLineChunkOrder = 0
     let columnChunkOrder = 0
     let uniqueLineNumber = true
@@ -35,56 +35,26 @@ export default function OutputImage({inputsState}){
       //console.log('i: '+i+' rPC: '+rowPixelNumber+' LN: '+lineNumber)
 
 
-
-
-
-
       // when there is new line of pixels
       if(rowPixelCounter>width){
         rowPixelCounter=1
         lineNumber++
+        
+        if((lineNumber % chunkHeight) === 0){
+          if(firstInLineChunkOrder === 0){
+            firstInLineChunkOrder = 1
+          }else if(firstInLineChunkOrder === 1){
+            firstInLineChunkOrder = 2
+          }else{
+            firstInLineChunkOrder = 0
+          }
+        }
         columnChunkOrder = firstInLineChunkOrder // remember columnChunkOrder when new line occures
-
-        if(columnChunkOrder === 0){
-          columnChunkOrder = 1
-          photoOrder = 1
-        }else if(columnChunkOrder === 1){
-          columnChunkOrder = 2
-          photoOrder = 2
-        }else{
-          columnChunkOrder = 0
-          photoOrder = 0
-        }
-
-      }
-      if(chunkHeight == 1){
-        if(firstInLineChunkOrder === 0){
-          firstInLineChunkOrder = 1
-        }else if(firstInLineChunkOrder === 1){
-          firstInLineChunkOrder = 2
-        }else{
-          firstInLineChunkOrder = 0
-        }
       }
 
-      // when height is equal chunkHeight change it's order
-      if( ((lineNumber % chunkHeight) === 0) && uniqueLineNumber ){
-        console.log( chunkHeight )
-        uniqueLineNumber = false
-        if(firstInLineChunkOrder === 0){
-          firstInLineChunkOrder = 1
-        }else if(firstInLineChunkOrder === 1){
-          firstInLineChunkOrder = 2
-        }else{
-          firstInLineChunkOrder = 0
-        }
-      }
-      if( lineNumber % chunkHeight){
-        uniqueLineNumber = true
-      }
 
       // when in line rowPixelCounter equals chunkWidth 
-      if( ( (rowPixelCounter % chunkWidth) === 0 ) ){
+      if( (rowPixelCounter % chunkWidth) === 0 ){
         // console.log('jest zero: '+rowPixelNumber+' % '+chunkWidth)
         if(columnChunkOrder === 0){
           columnChunkOrder = 1
