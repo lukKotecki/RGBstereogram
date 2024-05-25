@@ -15,7 +15,6 @@ export default function OutputImage({inputsState}){
       image.src = inputsState[index].imageUrl
       el.drawImage(image, 0, 0, outputCanvas.width, outputCanvas.height)
     })
-    // const outputImage = new Image() it's useless?
     const outputImageData = outputCtx.getImageData(0, 0, outputCanvas.width, outputCanvas.height)
     const data = outputImageData.data
     
@@ -28,11 +27,17 @@ export default function OutputImage({inputsState}){
     let lineNumber = 1
     let firstInLineChunkOrder = 0
     let columnChunkOrder = 0
-    let changeFirstInLineChunkOrder = false
+    let uniqueLineNumber = false
     let averageOfRGB = 0
+    
 
     for(let i=0, rowPixelCounter=1; i<data.length; i+=4, rowPixelCounter++){
       //console.log('i: '+i+' rPC: '+rowPixelNumber+' LN: '+lineNumber)
+
+
+
+
+
 
       // when there is new line of pixels
       if(rowPixelCounter>width){
@@ -42,9 +47,9 @@ export default function OutputImage({inputsState}){
       }
 
       // when height is equal chunkHeight change it's order
-      if( chunkHeight == 1 || ((lineNumber % chunkHeight) === 0) && changeFirstInLineChunkOrder ){
+      if( chunkHeight == 1 || ((lineNumber % chunkHeight) === 0) && uniqueLineNumber ){
         console.log( chunkHeight )
-        changeFirstInLineChunkOrder = false
+        uniqueLineNumber = false
         if(firstInLineChunkOrder === 0){
           firstInLineChunkOrder = 1
         }else if(firstInLineChunkOrder === 1){
@@ -54,11 +59,11 @@ export default function OutputImage({inputsState}){
         }
       }
       if( lineNumber % chunkHeight){
-        changeFirstInLineChunkOrder = true
+        uniqueLineNumber = true
       }
 
       // when in line rowPixelCounter equals chunkWidth 
-      if( ((rowPixelCounter % chunkWidth) === 0) ){
+      if( ( (rowPixelCounter % chunkWidth) === 0 ) ){
         // console.log('jest zero: '+rowPixelNumber+' % '+chunkWidth)
         if(columnChunkOrder === 0){
           columnChunkOrder = 1
@@ -72,8 +77,11 @@ export default function OutputImage({inputsState}){
         }
       }
 
-      averageOfRGB = (inputDataArray[photoOrder][i] + inputDataArray[photoOrder][i+1] + inputDataArray[photoOrder][i+2]) / 3
 
+
+
+
+      averageOfRGB = (inputDataArray[photoOrder][i] + inputDataArray[photoOrder][i+1] + inputDataArray[photoOrder][i+2]) / 3
       data[i] = Math.round( (averageOfRGB * inputsState[photoOrder].red) / 100 );    // Red
       data[i + 1] = Math.round( (averageOfRGB * inputsState[photoOrder].green) / 100 );   // Green
       data[i + 2] = Math.round( (averageOfRGB * inputsState[photoOrder].blue) / 100 );   // Blue
