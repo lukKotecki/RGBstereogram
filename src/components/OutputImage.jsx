@@ -18,28 +18,20 @@ export default function OutputImage({inputsState}){
     const outputImageData = outputCtx.getImageData(0, 0, outputCanvas.width, outputCanvas.height)
     const data = outputImageData.data
     
-    //pomocnicze
+    // variables used to dicing
     const width = outputCanvas.width
-    const height = outputCanvas.height
     const chunkWidth = inputsState[0].chunkWidth
     const chunkHeight = inputsState[0].chunkHeight
     let photoOrder = 0
-    let lineNumber = chunkHeight
+    let lineNumber = 0
     let firstInLineChunkOrder = 0
-    let columnChunkOrder = 0
-    let uniqueLineNumber = true
     let averageOfRGB = 0
     
-
     for(let i=0, rowPixelCounter=1; i<data.length; i+=4, rowPixelCounter++){
-      //console.log('i: '+i+' rPC: '+rowPixelNumber+' LN: '+lineNumber)
-
-
       // when there is new line of pixels
       if(rowPixelCounter>width){
         rowPixelCounter=1
         lineNumber++
-        
         if((lineNumber % chunkHeight) === 0){
           if(firstInLineChunkOrder === 0){
             firstInLineChunkOrder = 1
@@ -49,28 +41,18 @@ export default function OutputImage({inputsState}){
             firstInLineChunkOrder = 0
           }
         }
-        columnChunkOrder = firstInLineChunkOrder // remember columnChunkOrder when new line occures
+        photoOrder = firstInLineChunkOrder // remember photoOrder when new line occures
       }
-
-
-      // when in line rowPixelCounter equals chunkWidth 
+      // change photos in line
       if( (rowPixelCounter % chunkWidth) === 0 ){
-        // console.log('jest zero: '+rowPixelNumber+' % '+chunkWidth)
-        if(columnChunkOrder === 0){
-          columnChunkOrder = 1
+        if(photoOrder === 0){
           photoOrder = 1
-        }else if(columnChunkOrder === 1){
-          columnChunkOrder = 2
+        }else if(photoOrder === 1){
           photoOrder = 2
         }else{
-          columnChunkOrder = 0
           photoOrder = 0
         }
       }
-
-
-
-
 
       averageOfRGB = (inputDataArray[photoOrder][i] + inputDataArray[photoOrder][i+1] + inputDataArray[photoOrder][i+2]) / 3
       data[i] = Math.round( (averageOfRGB * inputsState[photoOrder].red) / 100 );    // Red
@@ -80,8 +62,6 @@ export default function OutputImage({inputsState}){
     }
     outputCtx.putImageData(outputImageData, 0, 0)
   })
-
-
 
   return (
       <>
