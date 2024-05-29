@@ -6,6 +6,7 @@ import OutputImage from './components/OutputImage'
 import whiteNoiseImage from './assets/images/white_noise.png'
 import grayImage from './assets/images/gray.png'
 import blackImage from './assets/images/black.png'
+import uploadImage from './assets/images/upload-image.jpg'
 import boyImage from './assets/images/boy-image.jpg'
 import dogImage from './assets/images/dog-image.jpeg'
 
@@ -14,28 +15,28 @@ function App() {
   const initialState = [
     {
       imageId: 'firstImage',
-      imageUrl: whiteNoiseImage,
-      red: 90,
-      green: 11,
-      blue: 2,
-      width: 50,
-      height: 50,
-      chunkWidth: 7,
-      chunkHeight: 7,
+      imageUrl: uploadImage,
+      red: 220,
+      green: 20,
+      blue: 20,
+      width: 500,
+      height: 500,
+      chunkWidth: 5,
+      chunkHeight: 5,
     }, 
     {
       imageId: 'secondImage',
       imageUrl: boyImage,
-      red: 13,
-      green: 77,
-      blue: 9 
+      red: 20,
+      green: 220,
+      blue: 20 
     }, 
     {
       imageId: 'thirdImage',
       imageUrl: dogImage,
-      red: 15,
-      green: 10,
-      blue: 86 
+      red: 20,
+      green: 20,
+      blue: 220 
     }, 
   ]
   const [inputsState, setInputsState] = React.useState(initialState)
