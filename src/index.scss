@@ -1,3 +1,8 @@
+
+$image-dimensions: 250px;
+
+
+
 *, *::after, *::before{
   box-sizing: border-box;
   margin: 0;
@@ -43,22 +48,41 @@ footer{
   padding: .5em;
 }
 
+
+
 #form-container{
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;   
   width: 90%;
   margin: 0 auto;
   text-align: center;
   margin-top: 3%;
+  margin-bottom: 7em;
+
+  background-color: #faa;
 }
 
-.input-wrapper{
-  margin-top: 3em;
+.input-wrapper-images{
+  margin-top: 10em;
+  margin: 4em;
+  width: $image-dimensions;
+  height: $image-dimensions;
+  background-color: #aff;
 }
 
-.input-wrapper img{
+.input-wrapper-images img{
   max-width: 100%;
+  height:$image-dimensions;
+  width: $image-dimensions;
 }
+.input-wrapper-dimensions{
+  margin-top: 10em;
+  background-color: #afa;
+}
+
 
 input[type="file"] {
   display: none;
@@ -104,14 +128,22 @@ input[type="file"] {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 1rem;
-
+}
+#outputImage{
+  max-width: 200px;
 }
 
 @media(min-width: 750px){
+
   header h1{
     font-size: 2rem;
     
   }
+
+#form-container{
+  flex-direction: row;
+}
+
 }
   
 

@@ -3,6 +3,7 @@ import React from 'react'
 export default function InputImages({ inputsState, setInputsState}){
 
     function handleInput(e){
+
         e.preventDefault()
         if(e.target.type === 'number'){
             if(e.target.id === 'width' || e.target.id === 'height' || e.target.id === 'chunkWidth' || e.target.id === 'chunkHeight'){
@@ -24,7 +25,8 @@ export default function InputImages({ inputsState, setInputsState}){
     }
     
     function handleImageUpload(e){
-        console.log(e.target.files.length)
+
+
         switch(e.target.files.length){
             case 1:
                 setInputsState(prev => prev.map((el, index)=>{
@@ -52,7 +54,7 @@ export default function InputImages({ inputsState, setInputsState}){
 
     function handleSubmit(e){
         e.preventDefault()
-        console.log('kliku')
+        console.log('handle submit')
         setInputsState(prev=> [...prev])
     }
 
@@ -60,7 +62,7 @@ export default function InputImages({ inputsState, setInputsState}){
         <form id='form-container'  onSubmit={handleSubmit} >
 
             {inputsState.map((el, index)=>
-                <div key={el.imageId} className='input-wrapper'>
+                <div key={el.imageId} className='input-wrapper-images'>
                     <img src={el.imageUrl}/>
                     <br/>
                     <label htmlFor={el.imageId} className="custom-file-upload">
@@ -96,7 +98,7 @@ export default function InputImages({ inputsState, setInputsState}){
                 </div>
             </div>)}
 
-            <div className='input-wrapper'>
+            <div className='input-wrapper-dimensions'>
                 <div className="number-inputs-wrapper">
                     <label htmlFor='width'>width: </label>
                     <input 
@@ -132,7 +134,7 @@ export default function InputImages({ inputsState, setInputsState}){
                         type='number' min='1' max='10000'>
                     </input>
                 </div>
-                <input id='submit' type='submit'value='recalculate'/>
+                <input id='submit' type='submit' value='recalculate'/>
             </div>
 
         </form>
