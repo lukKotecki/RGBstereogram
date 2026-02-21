@@ -54,8 +54,23 @@ export default function InputImages({ inputsState, setInputsState}){
 
     function handleSubmit(e){
         e.preventDefault()
-        console.log('handle submit')
-        setInputsState(prev=> [...prev])
+        
+        const canvas = document.getElementById('outputImage')
+        if (!canvas) {
+            console.warn('Canvas element not found')
+            return
+        }
+
+        canvas.toBlob((blob) => {
+            const url = window.URL.createObjectURL(blob)
+            const link = document.createElement('a')
+            link.href = url
+            link.download = `stereogram-${new Date().getTime()}.png`
+            document.body.appendChild(link)
+            link.click()
+            document.body.removeChild(link)
+            window.URL.revokeObjectURL(url)
+        }, 'image/png')
     }
 
     return (
@@ -143,7 +158,7 @@ export default function InputImages({ inputsState, setInputsState}){
                         </input>
                     </div>
                 </div>
-                <input id='submit' type='submit' value='recalculate'/>
+                <input id='submit' type='submit' value="Download&#13;&#10;Image"/>
             </div>
 
         </form>
