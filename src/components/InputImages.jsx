@@ -64,12 +64,12 @@ export default function InputImages({ inputsState, setInputsState}){
             const url = window.URL.createObjectURL(blob)
             const link = document.createElement('a')
             link.href = url
-            link.download = `stereogram-${new Date().getTime()}.png`
+            link.download = `stereogram-${new Date().getTime()}.jpeg`
             document.body.appendChild(link)
             link.click()
             document.body.removeChild(link)
             window.URL.revokeObjectURL(url)
-        }, 'image/png')
+        }, 'image/jpeg')
     }
 
     return (
