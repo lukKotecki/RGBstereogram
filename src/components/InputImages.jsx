@@ -100,39 +100,48 @@ export default function InputImages({ inputsState, setInputsState}){
 
             <div className='input-wrapper-dimensions'>
                 <div className="number-inputs-wrapper">
-                    <label htmlFor='width'>width: </label>
-                    <input 
-                        onChange={handleInput} 
-                        className='input-dimensions' 
-                        id='width' value={inputsState[0].width} 
-                        type='number' 
-                        min='1' max='10000'>
-                    </input>
-                    <label htmlFor='height'>height: </label>
-                    <input
-                        onChange={handleInput} 
-                        className='input-dimensions' 
-                        id='height' 
-                        value={inputsState[0].height} 
-                        type='number' min='1' max='10000'>
-                    </input>
-                    <br/>
-                    <label htmlFor='chunkWidth'>chunk width: </label>
-                    <input 
-                        onChange={handleInput} 
-                        className='input-dimensions' 
-                        id='chunkWidth' 
-                        value={inputsState[0].chunkWidth} 
-                        type='number' min='1' max='10000'>
-                    </input>
-                    <label htmlFor='chunkHeight'>chunk height: </label>
-                    <input 
-                        onChange={handleInput} 
-                        className='input-dimensions' 
-                        id='chunkHeight' 
-                        value={inputsState[0].chunkHeight} 
-                        type='number' min='1' max='10000'>
-                    </input>
+                    <div>
+                        <label htmlFor='width'>width: </label>
+                        <input 
+                            onChange={handleInput} 
+                            className='input-dimensions' 
+                            id='width' value={inputsState[0].width} 
+                            type='number' 
+                            min='1' max='10000'>
+                        </input>
+                    </div>
+                    <div>
+
+                        <label htmlFor='height'>height: </label>
+                        <input
+                            onChange={handleInput} 
+                            className='input-dimensions' 
+                            id='height' 
+                            value={inputsState[0].height} 
+                            type='number' min='1' max='10000'>
+                        </input>
+                        <br/>
+                    </div>
+                    <div>
+                        <label htmlFor='chunkWidth'>chunk width: </label>
+                        <input 
+                            onChange={handleInput} 
+                            className='input-dimensions' 
+                            id='chunkWidth' 
+                            value={inputsState[0].chunkWidth} 
+                            type='number' min='1' max='10000'>
+                        </input>
+                    </div>
+                    <div>
+                        <label htmlFor='chunkHeight'>chunk height: </label>
+                        <input 
+                            onChange={handleInput} 
+                            className='input-dimensions' 
+                            id='chunkHeight' 
+                            value={inputsState[0].chunkHeight} 
+                            type='number' min='1' max='10000'>
+                        </input>
+                    </div>
                 </div>
                 <input id='submit' type='submit' value='recalculate'/>
             </div>
