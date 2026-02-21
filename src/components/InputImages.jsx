@@ -26,7 +26,6 @@ export default function InputImages({ inputsState, setInputsState}){
     
     function handleImageUpload(e){
 
-
         switch(e.target.files.length){
             case 1:
                 setInputsState(prev => prev.map((el, index)=>{
@@ -85,31 +84,48 @@ export default function InputImages({ inputsState, setInputsState}){
                     </label>
                     <input onChange={handleInput} id={el.imageId} type="file" multiple />
                     <div className='number-inputs-wrapper'>
-                        <label htmlFor={index+'red'}>Red:</label>
-                        <input  onChange={handleInput} 
-                                id={index+'red'} 
-                                name={el.imageId+'Red'} 
-                                type='number' 
-                                min='0' max='255' 
-                                value={el.red}
-                                data={{red: 'red'}}>
-                        </input>
-                        <label htmlFor={index+'green'}>Green:</label>
-                        <input  onChange={handleInput} 
-                                id={index+'green'} 
-                                name={el.imageId+'Green'} 
-                                type='number' 
-                                min='0' max='255' 
-                                value={el.green}>
-                        </input>
-                        <label htmlFor={index+'blue'}>Blue:</label>
-                        <input  onChange={handleInput} 
-                                id={index+'blue'} 
-                                name={el.imageId+'Blue'} 
-                                type='number' 
-                                min='0' max='255' 
-                                value={el.blue}>
-                        </input>
+                        <div>
+                            <label htmlFor={index+'red'}>Red:</label>
+                            <input  onChange={handleInput} 
+                                    id={index+'red'} 
+                                    name={el.imageId+'Red'} 
+                                    type='number' 
+                                    min='0' max='255' 
+                                    value={el.red}
+                                    data={{red: 'red'}}>
+                            </input>
+                        </div>   
+                        <div>
+                            <label htmlFor={index+'green'}>Green:</label>
+                            <input  onChange={handleInput} 
+                                    id={index+'green'} 
+                                    name={el.imageId+'Green'} 
+                                    type='number' 
+                                    min='0' max='255' 
+                                    value={el.green}>
+                            </input>
+                        </div> 
+                        <div>
+                            <label htmlFor={index+'blue'}>Blue:</label>
+                            <input  onChange={handleInput} 
+                                    id={index+'blue'} 
+                                    name={el.imageId+'Blue'} 
+                                    type='number' 
+                                    min='0' max='255' 
+                                    value={el.blue}>
+                            </input>
+                        </div> 
+                        <div>
+                            <label htmlFor={index+'alpha'}>Alpha:</label>
+                            <input  onChange={handleInput} 
+                                    id={index+'alpha'} 
+                                    name={el.imageId+'Alpha'} 
+                                    type='number' 
+                                    min='0' max='1' 
+                                    step="0.05"
+                                    value={el.alpha}>
+                            </input>
+                        </div> 
                 </div>
             </div>)}
 

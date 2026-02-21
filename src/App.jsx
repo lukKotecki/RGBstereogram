@@ -19,24 +19,27 @@ function App() {
       red: 220,
       green: 20,
       blue: 20,
-      width: 500,
-      height: 500,
-      chunkWidth: 5,
-      chunkHeight: 5,
+      alpha: 1,
+      width: 1500,
+      height: 1500,
+      chunkWidth: 15,
+      chunkHeight: 15,
     }, 
     {
       imageId: 'secondImage',
       imageUrl: boyImage,
       red: 20,
       green: 220,
-      blue: 20 
+      blue: 20,
+      alpha: 1
     }, 
     {
       imageId: 'thirdImage',
       imageUrl: dogImage,
       red: 20,
       green: 20,
-      blue: 220 
+      blue: 220,
+      alpha: 1
     }, 
   ]
   const [inputsState, setInputsState] = React.useState(initialState)

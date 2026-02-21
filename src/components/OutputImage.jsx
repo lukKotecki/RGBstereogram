@@ -83,7 +83,7 @@ export default function OutputImage({inputsState}){
         data[i] = Math.round( (averageOfRGB * inputsState[photoOrder].red) / 100 );    // Red
         data[i + 1] = Math.round( (averageOfRGB * inputsState[photoOrder].green) / 100 );   // Green
         data[i + 2] = Math.round( (averageOfRGB * inputsState[photoOrder].blue) / 100 );   // Blue
-        data[i + 3] =  inputDataArray[photoOrder][i+3]; // Alpha
+        data[i + 3] =  inputDataArray[photoOrder][i+3] * inputsState[photoOrder].alpha ; // Alpha
       }
       outputCtx.putImageData(outputImageData, 0, 0);
     };
