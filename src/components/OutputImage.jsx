@@ -3,13 +3,23 @@ import React from 'react'
 export default function OutputImage({inputsState}){
   const outputCanvasRef = React.useRef(null)
   const canvasRef = React.useRef([])
+  const [showPopup, setShowPopup] = React.useState(false)
 
 
 
   function handleOutput(e){
-    console.log("image clicked ready for download")
-
+    setShowPopup(!showPopup)
   }
+
+  React.useEffect(() => {
+    if (showPopup && outputCanvasRef.current) {
+      const popupCanvas = document.getElementById('popupCanvas')
+      if (popupCanvas) {
+        const popupCtx = popupCanvas.getContext('2d')
+        popupCtx.drawImage(outputCanvasRef.current, 0, 0)
+      }
+    }
+  }, [showPopup])
 
   React.useEffect(()=>{   
     console.log('useEffect') 
@@ -111,6 +121,24 @@ export default function OutputImage({inputsState}){
 
             </div>
           ))}
+
+          {/* Popup Modal - Original Size */}
+          {showPopup && (
+            <div className='modal-overlay' onClick={handleOutput}>
+              <div className='modal-content'>
+                <canvas 
+                  width={inputsState[0].width} 
+                  height={inputsState[0].height} 
+                  id='popupCanvas'
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain'
+                  }}>
+                </canvas>
+              </div>
+            </div>
+          )}
       </>
   )
 }
