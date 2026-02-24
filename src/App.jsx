@@ -1,8 +1,10 @@
 import React from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import InputImages from './components/InputImages'
-import OutputImage from './components/OutputImage'
+import HomePage from './components/HomePage'
+import HowItWorks from './components/HowItWorks'
+import SupportMe from './components/SupportMe'
+import AboutProject from './components/AboutProject'
 import whiteNoiseImage from './assets/images/white_noise.png'
 import grayImage from './assets/images/gray.png'
 import blackImage from './assets/images/black.png'
@@ -43,12 +45,7 @@ function App() {
     }, 
   ]
   const [inputsState, setInputsState] = React.useState(initialState)
-  
-  const [outputImage, setOutputImage] = React.useState(null)
-  
-  React.useEffect(()=>{
-    setOutputImage(<OutputImage inputsState={inputsState}/>)
-  },[inputsState])
+  const [page, setPage] = React.useState('home')
 
   console.clear()
   console.log(inputsState)
@@ -62,13 +59,15 @@ function App() {
 
 return (
     <div className='container'>
-      <Header />
-      <InputImages  inputsState={inputsState} 
-                    setInputsState={setInputsState} 
-      />
-      
-      {outputImage}
+      <Header currentPage={page} setPage={setPage} />
 
+      {page === 'home' && (
+        <HomePage inputsState={inputsState} setInputsState={setInputsState} />
+      )}
+
+      {page === 'how' && <HowItWorks />}
+      {page === 'support' && <SupportMe />}
+      {page === 'about' && <AboutProject />}
 
       <Footer />
     </div>

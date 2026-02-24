@@ -51,6 +51,43 @@ header h1 span:hover {
   text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
 }
 
+/* Header navigation menu */
+header nav {
+  margin-top: 0.5rem;
+}
+
+/* page content wrapper for static pages */
+.page-content {
+  max-width: 900px;
+  margin: 2rem auto;
+  text-align: left;
+  padding: 0 1rem;
+}
+
+.header-menu {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 0;
+}
+
+.header-menu li button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.header-menu li.active button,
+.header-menu li button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
 /* Footer */
 footer{
   background: linear-gradient(to right, #2C5364, #203A43);
