@@ -56,6 +56,58 @@ header nav {
   margin-top: 0.5rem;
 }
 
+/* mobile menu container */
+.menu-container {
+  position: relative;
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  z-index: 1001;
+  cursor: pointer;
+}
+
+/* slide-out panel used at small widths */
+@media (max-width: 768px) {
+  .menu-container {
+    position: fixed;
+    top: 0;
+    right: -250px;
+    width: 220px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    transition: right 0.3s ease;
+    padding-top: 3rem;
+    z-index: 1000;
+  }
+
+  .menu-container.open {
+    right: 0;
+  }
+
+  .header-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 1rem;
+  }
+
+  .header-menu li {
+    margin-bottom: 1rem;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
 /* page content wrapper for static pages */
 .page-content {
   max-width: 900px;
@@ -334,6 +386,30 @@ input[type="file"] {
 // }
 
 /* Responsive Design */
+
+@media (max-width: 1024px) {
+  /* moderate laptop / small desktop */
+  #form-container {
+    max-width: 90vw;
+  }
+  .header-menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* tablets and large phones */
+  .header-menu {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .header-menu li button {
+    font-size: 0.9rem;
+  }
+}
+
 @media (max-width: 640px) {
   #form-container {
     grid-template-columns: 1fr;
