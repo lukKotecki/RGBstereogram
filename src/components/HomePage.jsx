@@ -2,7 +2,7 @@ import React from 'react'
 import InputImages from './InputImages'
 import OutputImage from './OutputImage'
 
-export default function HomePage({ inputsState, setInputsState }) {
+export default function HomePage({ inputsState, setInputsState, t }) {
   const [outputImage, setOutputImage] = React.useState(null)
 
   React.useEffect(() => {
@@ -11,7 +11,7 @@ export default function HomePage({ inputsState, setInputsState }) {
 
   return (
     <>
-      <InputImages inputsState={inputsState} setInputsState={setInputsState} />
+      <InputImages inputsState={inputsState} setInputsState={setInputsState} t={t} />
       {outputImage}
     </>
   )

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function InputImages({ inputsState, setInputsState}){
+export default function InputImages({ inputsState, setInputsState, t}){
 
     function handleInput(e){
 
@@ -80,12 +80,12 @@ export default function InputImages({ inputsState, setInputsState}){
                     <img src={el.imageUrl}/>
                     <br/>
                     <label htmlFor={el.imageId} className="custom-file-upload">
-                        Upload file
+                        {t.uploadFile}
                     </label>
                     <input onChange={handleInput} id={el.imageId} type="file" multiple />
                     <div className='number-inputs-wrapper'>
                         <div>
-                            <label htmlFor={index+'red'}>Red:</label>
+                            <label htmlFor={index+'red'}>{t.red}:</label>
                             <input  onChange={handleInput} 
                                     id={index+'red'} 
                                     name={el.imageId+'Red'} 
@@ -96,7 +96,7 @@ export default function InputImages({ inputsState, setInputsState}){
                             </input>
                         </div>   
                         <div>
-                            <label htmlFor={index+'green'}>Green:</label>
+                            <label htmlFor={index+'green'}>{t.green}:</label>
                             <input  onChange={handleInput} 
                                     id={index+'green'} 
                                     name={el.imageId+'Green'} 
@@ -106,7 +106,7 @@ export default function InputImages({ inputsState, setInputsState}){
                             </input>
                         </div> 
                         <div>
-                            <label htmlFor={index+'blue'}>Blue:</label>
+                            <label htmlFor={index+'blue'}>{t.blue}:</label>
                             <input  onChange={handleInput} 
                                     id={index+'blue'} 
                                     name={el.imageId+'Blue'} 
@@ -116,7 +116,7 @@ export default function InputImages({ inputsState, setInputsState}){
                             </input>
                         </div> 
                         <div>
-                            <label htmlFor={index+'alpha'}>Alpha:</label>
+                            <label htmlFor={index+'alpha'}>{t.alpha}:</label>
                             <input  onChange={handleInput} 
                                     id={index+'alpha'} 
                                     name={el.imageId+'Alpha'} 
@@ -132,7 +132,7 @@ export default function InputImages({ inputsState, setInputsState}){
             <div className='input-wrapper-dimensions'>
                 <div className="number-inputs-wrapper">
                     <div>
-                        <label htmlFor='width'>width: </label>
+                        <label htmlFor='width'>{t.width}: </label>
                         <input 
                             onChange={handleInput} 
                             className='input-dimensions' 
@@ -143,7 +143,7 @@ export default function InputImages({ inputsState, setInputsState}){
                     </div>
                     <div>
 
-                        <label htmlFor='height'>height: </label>
+                        <label htmlFor='height'>{t.height}: </label>
                         <input
                             onChange={handleInput} 
                             className='input-dimensions' 
@@ -154,7 +154,7 @@ export default function InputImages({ inputsState, setInputsState}){
                         <br/>
                     </div>
                     <div>
-                        <label htmlFor='chunkWidth'>chunk width: </label>
+                        <label htmlFor='chunkWidth'>{t.chunkWidth}: </label>
                         <input 
                             onChange={handleInput} 
                             className='input-dimensions' 
@@ -164,7 +164,7 @@ export default function InputImages({ inputsState, setInputsState}){
                         </input>
                     </div>
                     <div>
-                        <label htmlFor='chunkHeight'>chunk height: </label>
+                        <label htmlFor='chunkHeight'>{t.chunkHeight}: </label>
                         <input 
                             onChange={handleInput} 
                             className='input-dimensions' 
@@ -174,7 +174,7 @@ export default function InputImages({ inputsState, setInputsState}){
                         </input>
                     </div>
                 </div>
-                <input id='submit' type='submit' value="Download&#13;&#10;Image"/>
+                <input id='submit' type='submit' value={t.downloadImage}/>
             </div>
 
         </form>

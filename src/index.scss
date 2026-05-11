@@ -32,6 +32,35 @@ header{
   width: 100%;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 1rem;
+  position: relative;
+}
+
+.language-switcher {
+  position: absolute;
+  top: 0.9rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.language-switcher label {
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.language-switcher select {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 6px;
+  padding: 0.25rem 0.4rem;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  font-weight: 600;
+}
+
+.language-switcher option {
+  color: #0F2027;
 }
 
 header h1{
@@ -76,6 +105,20 @@ header nav {
 
 /* slide-out panel used at small widths */
 @media (max-width: 768px) {
+  .language-switcher {
+    top: 0.8rem;
+    right: 3.8rem;
+  }
+
+  .language-switcher label {
+    display: none;
+  }
+
+  .language-switcher select {
+    font-size: 0.8rem;
+    max-width: 95px;
+  }
+
   .menu-container {
     position: fixed;
     top: 0;

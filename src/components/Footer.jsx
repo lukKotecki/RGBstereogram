@@ -1,11 +1,11 @@
 import React from 'react'
 
-export default function Footer(){
+export default function Footer({ t }){
 
 
     return (
         <footer>
-            <p>© {new Date().getFullYear()} RGBstereogram.com All rights reserved.</p>
+            <p>© {new Date().getFullYear()} RGBstereogram.com {t.footerCopyright}</p>
 
         </footer>
     )
