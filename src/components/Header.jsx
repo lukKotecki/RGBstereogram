@@ -39,7 +39,7 @@ export default function Header({ currentPage, setPage, language, setLanguage, t 
             </div>
             <h1><span style={red}>R</span>
                 <span style={green}>G</span>
-                <span style={blue}>B</span>stereogram.com
+                <span style={blue}>B</span>stereogram
             </h1>
             <button
               className="hamburger"
